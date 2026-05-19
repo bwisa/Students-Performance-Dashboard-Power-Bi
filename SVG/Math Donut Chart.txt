@@ -1,0 +1,23 @@
+Math Donut Chart = 
+VAR Subject = "Math"
+VAR AvgScore = [Avg Math]
+VAR MaxScore = 100
+VAR ProgressValue = AvgScore / MaxScore * 100
+VAR DisplayValue = MIN(ProgressValue, 100)
+VAR Radius = 52
+VAR CircumferenceValue = 2 * PI() * Radius
+VAR ProgressLength = (DisplayValue / 100) * CircumferenceValue
+VAR CenterX = 60
+VAR CenterY = 60
+VAR BackgroundStrokeWidth = 12
+VAR ProgressStrokeWidth = 16
+VAR Color = "#071C13"
+
+RETURN
+"data:image/svg+xml;utf8,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120' width='260' height='260'>
+  <circle cx='" & CenterX & "' cy='" & CenterY & "' r='" & Radius & "' fill='none' stroke='#E5F2F1' stroke-width='" & BackgroundStrokeWidth & "' />
+  <circle cx='" & CenterX & "' cy='" & CenterY & "' r='" & Radius & "' fill='none' stroke='" & Color & "' stroke-width='" & ProgressStrokeWidth & "' stroke-dasharray='" & CircumferenceValue & "' stroke-dashoffset='" & (CircumferenceValue - ProgressLength) & "' />
+  <text x='50%' y='50%' text-anchor='middle' alignment-baseline='middle' font-size='16' font-family='Arial' fill='#000000'>" & FORMAT(ProgressValue, "0.0") & "%</text>
+  <text x='50%' y='62%' text-anchor='middle' alignment-baseline='middle' font-size='14' font-family='Arial' fill='#000000'>" & Subject & "</text>
+</svg>"

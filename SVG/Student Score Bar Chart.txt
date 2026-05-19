@@ -1,0 +1,29 @@
+Student Score Bar Chart = 
+VAR AvgScore = [Average Score] // Replace with your actual measure
+VAR MaxScore = 100
+VAR ProgressValue = AvgScore / MaxScore * 100
+VAR BarHeight = 20
+VAR BarY = 20
+VAR BarWidth = 300
+VAR ProgressPercent = DIVIDE(ProgressValue, 100, 0)
+
+// --- COLOR DEFINITIONS ---
+VAR RedColor = "#FF4C4C"
+VAR AmberColor = "#FFA500"
+VAR GreenColor = "#13A806"
+
+VAR FinalColor =
+    SWITCH(
+        TRUE(),
+        ProgressValue >= 75, GreenColor,
+        ProgressValue >= 50, AmberColor,
+        ProgressValue < 50, RedColor,
+        GreenColor
+    )
+
+RETURN
+"data:image/svg+xml;utf8,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 " & BarWidth & " 60' preserveAspectRatio='none' width='" & BarWidth & "' height='60'>
+  <rect x='0' y='" & BarY & "' width='" & BarWidth & "' height='" & BarHeight & "' fill='#E0E0E0' rx='5' ry='5'/>
+  <rect x='0' y='" & BarY & "' width='" & (ProgressPercent * BarWidth) & "' height='" & BarHeight & "' fill='" & FinalColor & "' rx='5' ry='5'/>
+</svg>"
