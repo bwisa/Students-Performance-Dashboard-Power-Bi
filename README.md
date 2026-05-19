@@ -1,4 +1,4 @@
-# Building a Students’ Performance Dashboard in Microsoft Power BI
+# Students’ Performance Dashboard in Microsoft Power BI
 
 In this Power BI project project, I did EDA - clean, transform, analyze, and visualize education data using Power Query,
 DAX, interactive charts, custom SVG visuals, and professional dashboard design techniques.
